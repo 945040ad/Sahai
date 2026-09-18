@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sahai helps Indian citizens understand government scheme rejections and guides them through the re-application process." />
+  <title>Sahai</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // Apply saved theme before paint to prevent flash
+    (function() {
+      var t = localStorage.getItem("sahai-theme");
+      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="app">
+
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-icon">
+            <img src="assets/favicon.jpg" alt="Sahai" />
+          </div>
+          <div>
+            <span class="logo-name">Sahai</span>
+            <span class="logo-tagline">सरकारी योजना सहायक</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en-IN" id="btn-en">EN</button>
+            <button class="lang-btn" data-lang="hi-IN" id="btn-hi">हिं</button>
+          </div>
+          <button class="theme-toggle" id="theme-toggle" title="Switch theme" aria-label="Switch between light and dark mode">
+            <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <div class="demo-badge" id="demo-badge" style="display:none">DEMO</div>
+          <div class="status-dot" id="status-dot"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero" id="hero">
+      <h1 class="hero-title">Understand why your scheme application was rejected</h1>
+      <p class="hero-sub">Describe what happened with your government scheme application. Sahai will explain the likely reason for rejection, list missing documents, and help you prepare a corrected application.</p>
+      <div class="hero-chips">
+        <button class="chip" data-prompt="I applied for PM-Kisan 4 months ago and have not received any response or update">PM-Kisan: no response</button>
+        <button class="chip" data-prompt="My PM Awas Yojana application was rejected. I do not know the reason.">PMAY: rejected</button>
+        <button class="chip" data-prompt="I was denied an Ayushman Bharat card at the hospital">Ayushman Bharat: denied</button>
+        <button class="chip" data-prompt="I am a 60 year old farmer from Bihar. Which government schemes am I eligible for?">Check my eligibility</button>
+      </div>
+    </section>
+
+    <main class="chat-area" id="chat-area">
+      <div class="messages" id="messages"></div>
+    </main>
+
+    <footer class="input-bar" id="input-bar">
+      <div class="input-wrap">
+        <label class="attach-btn" for="photo-input" title="Upload a photo of your rejection letter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none" />
+        </label>
+
+        <textarea
+          id="message-input"
+          class="message-input"
+          placeholder="Describe your situation..."
+          rows="1"
+        ></textarea>
+
+        <button class="mic-btn" id="mic-btn" title="Record voice message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+
+        <button class="send-btn" id="send-btn" title="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-footer">
+        <span>Not official government advice</span>
+        <span class="footer-sep">|</span>
+        <a href="privacy.html">Privacy</a>
+        <span class="footer-sep">|</span>
+        <a href="terms.html">Terms</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <audio id="response-audio" style="display:none"></audio>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

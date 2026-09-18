@@ -1,0 +1,4 @@
+[build]
+  base = "govfixer-frontend/"
+  command = ""
+  publish = "govfixer-frontend/"

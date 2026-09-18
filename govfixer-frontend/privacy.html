@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Sahai</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f7f8fa;
+      color: #1a1a2e;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      border-left: 1px solid #e2e5e9;
+      border-right: 1px solid #e2e5e9;
+      padding: 40px 32px 60px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #1a73a7;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+    .back-link:hover { text-decoration: underline; }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .last-updated {
+      font-size: 0.8rem;
+      color: #9aa0a6;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    p { margin-bottom: 12px; font-size: 0.9rem; color: #5f6368; }
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    li { font-size: 0.9rem; color: #5f6368; margin-bottom: 4px; }
+    @media (max-width: 600px) {
+      .page { padding: 24px 16px 40px; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="index.html" class="back-link">Back to Sahai</a>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: September 2026</p>
+
+    <h2>What Sahai Is</h2>
+    <p>Sahai is a prototype AI assistant built for the AWS First Commit Hackathon 2026. It helps Indian citizens understand government scheme rejections and prepare corrected applications. It is not a government service.</p>
+
+    <h2>What Data We Collect</h2>
+    <p>When you use Sahai, the following data may be processed:</p>
+    <ul>
+      <li><strong>Text messages</strong> you type into the chat</li>
+      <li><strong>Voice recordings</strong> if you use the microphone feature (processed via Amazon Transcribe for speech-to-text conversion)</li>
+      <li><strong>Photos</strong> of rejection letters or documents you upload (processed via Amazon Textract for text extraction)</li>
+      <li><strong>Session identifiers</strong> to maintain conversation context during your visit</li>
+    </ul>
+
+    <h2>How We Use Your Data</h2>
+    <ul>
+      <li>To process your query and generate a response using Amazon Bedrock AI models</li>
+      <li>To maintain conversation context within a single session</li>
+      <li>Voice recordings are temporarily stored in Amazon S3 for transcription and then handled according to AWS data retention policies</li>
+    </ul>
+
+    <h2>Data Storage and Retention</h2>
+    <ul>
+      <li>Session data is stored in Amazon DynamoDB and automatically deleted after 24 hours</li>
+      <li>Audio files and uploaded images are stored in Amazon S3</li>
+      <li>All data is processed and stored within AWS infrastructure in the us-west-2 (Oregon) region</li>
+      <li>We do not sell or share your data with third parties</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>Sahai uses the following AWS services to function:</p>
+    <ul>
+      <li>Amazon Bedrock (AI model inference)</li>
+      <li>Amazon Transcribe (speech-to-text)</li>
+      <li>Amazon Polly (text-to-speech)</li>
+      <li>Amazon Textract (document text extraction)</li>
+      <li>Amazon S3 (file storage)</li>
+      <li>Amazon DynamoDB (session storage)</li>
+    </ul>
+    <p>Your data is subject to the <a href="https://aws.amazon.com/privacy/" style="color:#1a73a7">AWS Privacy Policy</a> when processed by these services.</p>
+
+    <h2>No Account Required</h2>
+    <p>Sahai does not require you to create an account, provide an email address, or log in. No personal identification information is required to use the service.</p>
+
+    <h2>Sensitive Information</h2>
+    <p>We strongly recommend that you do not share Aadhaar numbers, bank account numbers, or other sensitive personal information in the chat. Sahai does not need this information to help you. If such information appears in an uploaded photo, it is processed only for text extraction and is not stored separately.</p>
+
+    <h2>Children</h2>
+    <p>Sahai is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>This policy may be updated as the project evolves. The "last updated" date at the top of this page reflects the most recent revision.</p>
+
+    <h2>Contact</h2>
+    <p>For questions about this privacy policy or your data, please reach out to the Sahai team through the AWS First Commit Hackathon 2026 channels.</p>
+  </div>
+</body>
+</html>
